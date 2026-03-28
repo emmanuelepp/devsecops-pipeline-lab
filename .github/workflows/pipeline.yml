@@ -13,14 +13,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Run Snyk Code Analysis
-        # TODO: pin to a commit SHA for supply chain security (e.g. snyk/actions/dotnet@<sha>)
+        
         uses: snyk/actions/dotnet@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           command: code test
           args: --severity-threshold=high --sarif-file-output=snyk-sast.sarif
-        # continue-on-error: true — lab tiene vulnerabilidades intencionales; cambiar a false en producción
+        
         continue-on-error: true
       - name: Upload SAST report
         if: always()
@@ -47,7 +47,7 @@ jobs:
         run: snyk test --severity-threshold=high --no-report --json-file-output=snyk-sca.json
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        # continue-on-error: true — lab tiene vulnerabilidades intencionales; cambiar a false en producción
+        
         continue-on-error: true
       - name: Upload SCA report
         if: always()
@@ -85,7 +85,7 @@ jobs:
       - name: Load Docker image
         run: docker load -i image.tar
       - name: Run Snyk Container Scan
-        # TODO: pin to a commit SHA for supply chain security (e.g. snyk/actions/docker@<sha>)
+        
         uses: snyk/actions/docker@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
@@ -124,11 +124,10 @@ jobs:
           echo "Waiting for API to be ready..."
           timeout 60 bash -c 'until curl -sf http://localhost:8080/swagger/index.html; do sleep 2; done'
       - name: Fix workspace permissions for ZAP
-        # ZAP corre como usuario no-root en el contenedor y necesita escribir en el workspace
+        
         run: chmod 777 ${{ github.workspace }}
       - name: Run OWASP ZAP Baseline Scan
-        # Corremos ZAP directo via Docker para evitar el bug de la action
-        # que usa la API antigua de artifacts (v6.0-preview) y retorna 400
+        
         run: |
           docker run --network host \
             -v ${{ github.workspace }}:/zap/wrk:rw \
