@@ -1,0 +1,32 @@
+# Build artifacts
+**/bin/
+**/obj/
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+*.user
+
+# Secrets / env
+.env
+.env.*
+**/*.env
+
+# Snyk
+.snyk
+
+# Logs
+*.log
+
+# Docker
+docker-compose*.yml
+Dockerfile*
+.dockerignore
+
+# Docs
+README.md
+LICENSE
