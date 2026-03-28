@@ -37,8 +37,7 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          command: test
-          args: --severity-threshold=high --file=src/VulnerableApi/VulnerableApi.csproj
+          args: --severity-threshold=high --file=src/VulnerableApi/VulnerableApi.csproj --package-manager=nuget
         continue-on-error: false
 
   build:
