@@ -17,7 +17,7 @@ RUN dotnet publish "VulnerableApi.csproj" -c Release --no-restore -o /app/publis
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-RUN adduser --disabled-password --gecos '' appuser && chown -R appuser /app
+RUN useradd --no-create-home --shell /bin/false appuser && chown -R appuser /app
 USER appuser
 HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \
   CMD curl -f http://localhost:8080/swagger/index.html || exit 1
