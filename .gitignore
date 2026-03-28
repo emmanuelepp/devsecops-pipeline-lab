@@ -18,3 +18,14 @@ Thumbs.db
 .idea/
 *.suo
 *.user
+
+# .NET
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.nupkg
+packages/
+project.lock.json
