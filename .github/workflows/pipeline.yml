@@ -100,6 +100,7 @@ jobs:
         with:
           target: 'http://localhost:8080'
           cmd_options: '-a'
+          artifact_name: 'zap-scan-report'
         continue-on-error: false
       - name: Stop API
         if: always()
