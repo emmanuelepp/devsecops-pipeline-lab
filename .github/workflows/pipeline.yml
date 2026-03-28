@@ -32,12 +32,12 @@ jobs:
           dotnet-version: '10.x'
       - name: Restore dependencies
         run: dotnet restore src/VulnerableApi/VulnerableApi.csproj
+      - name: Install Snyk CLI
+        run: npm install -g snyk
       - name: Run Snyk SCA
-        uses: snyk/actions/dotnet@master
+        run: snyk test --severity-threshold=high --file=src/VulnerableApi/VulnerableApi.csproj
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args: --severity-threshold=high --file=src/VulnerableApi/VulnerableApi.csproj --package-manager=nuget
         continue-on-error: false
 
   build:
