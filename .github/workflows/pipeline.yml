@@ -35,7 +35,8 @@ jobs:
       - name: Install Snyk CLI
         run: npm install -g snyk
       - name: Run Snyk SCA
-        run: snyk test --severity-threshold=high --file=src/VulnerableApi/VulnerableApi.csproj --package-manager=nuget
+        working-directory: src/VulnerableApi
+        run: snyk test --severity-threshold=high
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         continue-on-error: false
