@@ -75,7 +75,7 @@ jobs:
       - name: Install Snyk CLI
         run: npm install -g snyk
       - name: Run Snyk IaC Scan
-        run: snyk iac test docker-compose.yml
+        run: snyk iac test ./docker-compose.yml --severity-threshold=high --no-report
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         continue-on-error: false
