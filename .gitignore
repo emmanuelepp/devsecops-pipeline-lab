@@ -19,6 +19,9 @@ Thumbs.db
 *.suo
 *.user
 
+# IA Tools
+.claude/
+
 # .NET
 bin/
 obj/
@@ -29,4 +32,3 @@ obj/
 *.nupkg
 packages/
 project.lock.json
-.claude/
