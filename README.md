@@ -31,9 +31,9 @@ The API contains deliberate security flaws to demonstrate detection capabilities
 > These vulnerabilities are intentional and exist for educational purposes only.
 
 ## Pipeline
-```
+
 ![alt text](image.png)
-```
+
 
 ## Tech Stack
 
