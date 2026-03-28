@@ -123,6 +123,9 @@ jobs:
           docker run -d -p 8080:8080 --name vulnerable-api vulnerable-api:${{ github.sha }}
           echo "Waiting for API to be ready..."
           timeout 60 bash -c 'until curl -sf http://localhost:8080/swagger/index.html; do sleep 2; done'
+      - name: Fix workspace permissions for ZAP
+        # ZAP corre como usuario no-root en el contenedor y necesita escribir en el workspace
+        run: chmod 777 ${{ github.workspace }}
       - name: Run OWASP ZAP Baseline Scan
         # Corremos ZAP directo via Docker para evitar el bug de la action
         # que usa la API antigua de artifacts (v6.0-preview) y retorna 400
