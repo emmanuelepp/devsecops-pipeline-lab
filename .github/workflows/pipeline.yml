@@ -98,7 +98,7 @@ jobs:
         with:
           target: 'http://localhost:8080'
           cmd_options: '-a'
-        continue-on-error: true
+        continue-on-error: false
       - name: Stop API
         if: always()
         run: docker stop vulnerable-api
